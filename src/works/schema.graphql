@@ -1,0 +1,26 @@
+type Exif {
+  model: String
+  software: String
+  isoSpeedRatings: String
+  dateTime: String
+  make: String
+}
+
+type Query {
+  works: [Work!]!
+}
+
+type Work {
+  id: ID!
+  filename: String
+  imageWidth: String
+  imageHeight: String
+  urls: [WorkUrl!]!
+  exif: Exif
+}
+
+type WorkUrl {
+  type: String!
+  link: String!
+}
+
