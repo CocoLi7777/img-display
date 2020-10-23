@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
 export const StyledToolBar = styled.div`
-  width: 60%;
+  width: 70%;
   margin: 30px auto;
-
   text-align: center;
 `;
 
 export const StyledToolBarContent = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
   grid-gap: 20px;
   position: relative;
 
   @media screen and (max-width: 1024px) {
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
   }
 
   @media screen and (max-width: 768px) {

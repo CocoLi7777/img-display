@@ -9,55 +9,83 @@ import { FilterModel } from './components/elements/FilterModel';
 import { Spinner } from './components/elements/Spinner';
 import { Alert } from './components/elements/Alert';
 import { Error } from './components/elements/Error';
+import { ResetBtn } from './components/elements/ResetBtn';
 const Home = () => {
   const [{ data, loading, error }, fetchWorks] = useWorksFetch();
 
   const [filter, setfilter] = useState([]);
-  const [doFilter, setDoFilter] = useState(false);
+  const [makeFilter, setMakeFilter] = useState([]);
+  const [modelFilter, setModelFilter] = useState([]);
+  const [isMakeAll, setIsMakeAll] = useState(false);
+  const [isModelAll, setIsModelAll] = useState(false);
 
   const handleMakeFilters = (filters) => {
-    setDoFilter(true);
     let allWorks = [];
 
-    if (filters == 'all') {
+    if (filters == 'all' && (modelFilter.length === 0 || isModelAll === true)) {
+      setIsMakeAll(true);
       allWorks = [...data.works];
       setfilter(allWorks);
-    } else {
-      if (filter.length === 0) {
-        allWorks = data.works.filter(
-          (item) =>
-            item.exif.make.toUpperCase().indexOf(filters.toUpperCase()) >= 0
-        );
-      } else {
-        allWorks = filter.filter(
-          (item) =>
-            item.exif.make.toUpperCase().indexOf(filters.toUpperCase()) >= 0
-        );
-      }
+      setMakeFilter(allWorks);
+    } else if (
+      filters == 'all' &&
+      modelFilter.length > 0 &&
+      filter.length === 0
+    ) {
+      setfilter(modelFilter);
+    } else if (filters == 'all' && modelFilter.length > 0) {
+      setIsMakeAll(true);
+      return;
+    } else if (filters !== 'all' && modelFilter.length === 0) {
+      setIsMakeAll(false);
+      allWorks = data.works.filter(
+        (item) =>
+          item.exif.make.toUpperCase().indexOf(filters.toUpperCase()) >= 0
+      );
       setfilter(allWorks);
+      setMakeFilter(allWorks);
+    } else if (filters !== 'all' && modelFilter.length > 0) {
+      setIsMakeAll(false);
+      allWorks = filter.filter(
+        (item) =>
+          item.exif.make.toUpperCase().indexOf(filters.toUpperCase()) >= 0
+      );
+      setfilter(allWorks);
+      setMakeFilter(allWorks);
     }
   };
   const handleModelFilters = (filters) => {
-    setDoFilter(true);
     let allWorks = [];
 
     console.log(filter);
-    if (filters == 'all') {
+    if (filters == 'all' && (makeFilter.length === 0 || isMakeAll === true)) {
+      setIsModelAll(true);
       allWorks = [...data.works];
       setfilter(allWorks);
-    } else {
-      if (filter.length === 0) {
-        allWorks = data.works.filter(
-          (item) =>
-            item.exif.model.toUpperCase().indexOf(filters.toUpperCase()) >= 0
-        );
-      } else {
-        allWorks = filter.filter(
-          (item) =>
-            item.exif.model.toUpperCase().indexOf(filters.toUpperCase()) >= 0
-        );
-      }
+      setModelFilter(allWorks);
+    } else if (
+      filters == 'all' &&
+      makeFilter.length > 0 &&
+      filter.length === 0
+    ) {
+      setfilter(makeFilter);
+    } else if (filters == 'all' && makeFilter.length > 0) {
+      setIsModelAll(true);
+      return;
+    } else if (filters !== 'all' && makeFilter.length === 0) {
+      setIsModelAll(false);
+      allWorks = data.works.filter(
+        (item) => item.exif.model.toUpperCase() === filters.toUpperCase()
+      );
       setfilter(allWorks);
+      setModelFilter(allWorks);
+    } else if (filters !== 'all' && makeFilter.length > 0) {
+      setIsModelAll(false);
+      allWorks = filter.filter(
+        (item) => item.exif.model.toUpperCase() == filters.toUpperCase()
+      );
+      setfilter(allWorks);
+      setModelFilter(allWorks);
     }
   };
 
@@ -66,6 +94,7 @@ const Home = () => {
   }, []);
   if (error === true) return <Error />;
   if (loading === true) return <Spinner />;
+
   return (
     <>
       <ToolBar>
@@ -75,18 +104,22 @@ const Home = () => {
         <FilterModel
           handleModelFilters={(filters) => handleModelFilters(filters)}
         />
+        <ResetBtn text="Reset" />
       </ToolBar>
-      {filter.length === 0 && doFilter === true && <Alert />}
+      {filter.length === 0 &&
+        (modelFilter.length > 0 || makeFilter.length > 0) && <Alert />}
       <Grid
         header={
-          doFilter === true
+          modelFilter.length > 0 || makeFilter.length > 0
             ? filter.length +
               (filter.length < 2 ? ' work ' : ' works ') +
               'found'
             : ' All works'
         }
       >
-        {filter.length === 0
+        {filter.length === 0 &&
+        modelFilter.length === 0 &&
+        makeFilter.length === 0
           ? data.works.map((item) => <Work key={item.id} item={item} />)
           : filter.map((item) => <Work key={item.id} item={item} />)}
       </Grid>

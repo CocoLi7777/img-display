@@ -6,7 +6,7 @@ const Header = () => (
   <StyledHeader>
     <div className="header-content">
       <img src={Artist} alt="artist" />
-      &nbsp;&nbsp;WorkBay
+      &nbsp;&nbsp;Artworks Bay
     </div>
   </StyledHeader>
 );

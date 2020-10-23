@@ -5,8 +5,6 @@ import 'antd/dist/antd.css';
 const { Option } = Select;
 
 export const FilterMake = (props) => {
-  const [checked, setChecked] = useState([]);
-
   function handleChange(value) {
     props.handleMakeFilters(value);
   }
