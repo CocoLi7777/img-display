@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 
 export const StyledGrid = styled.div`
-  max-width: 1280px;
+  width: 80%;
   margin: 0 auto;
+  text-align: center;
+  background-color: #ebf5f4;
+  border-radius: 10px;
+  font-family: 'Open Sans', sans-serif;
 
   h1 {
-    font-family: 'Abel', sans-serif;
-    font-size: 42px;
+    font-size: 25px;
+    text-align: left;
+    margin-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 30px;
 
     @media screen and (max-width: 768px) {
-      font-size: 22px;
+      font-size: 18px;
     }
   }
 `;

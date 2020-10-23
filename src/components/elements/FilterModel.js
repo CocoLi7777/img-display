@@ -13,7 +13,12 @@ export const FilterModel = (props) => {
 
   return (
     <div>
-      <Select defaultValue="All" style={{ width: 120 }} onChange={handleChange}>
+      <Select
+        defaultValue="Model"
+        style={{ width: 240 }}
+        onChange={handleChange}
+      >
+        <Option value="all">All Model</Option>
         <Option value="NIKON D80">NiKON D80</Option>
         <Option value="Canon EOS 20D">CANON EOS 20D</Option>
         <Option value="FinePix S6500fd">FINEPIX S6500fd</Option>

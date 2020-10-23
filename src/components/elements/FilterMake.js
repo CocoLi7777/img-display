@@ -13,8 +13,12 @@ export const FilterMake = (props) => {
 
   return (
     <div>
-      <Select defaultValue="All" style={{ width: 120 }} onChange={handleChange}>
-        <Option value="all">All</Option>
+      <Select
+        defaultValue="Make"
+        style={{ width: 240 }}
+        onChange={handleChange}
+      >
+        <Option value="all">All Make</Option>
         <Option value="canon">Canon</Option>
         <Option value="fuji">Fuji</Option>
         <Option value="leica">Leica</Option>
