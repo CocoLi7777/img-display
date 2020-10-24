@@ -6,7 +6,6 @@
 - [Details](#details)
   - [Highlights](#highlights)
   - [Unit Test](#running-unit-test)
-  - [New Improvement...](#new-improvement...)
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
 - [Running locally](#running-locally)
