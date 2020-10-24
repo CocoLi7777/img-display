@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Artworks Display Board
 
-## Available Scripts
+## Content
 
-In the project directory, you can run:
+- [Introduction](#introduction)
+- [Details](#details)
+  - [Highlights](#highlights)
+  - [Unit Test](#running-unit-test)
+  - [New Improvement...](#new-improvement...)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#quick-start)
+- [Running locally](#running-locally)
+  ​
 
-### `yarn start`
+## Introduction
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project is to build an image works display board and provide the function of filtering to help the user find the work easily.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The tasks are:
 
-### `yarn test`
+1. Consume a GraphQL API and retrieve the works data.
+2. Display the small thumb image of every work, and the information of camera make and model.
+3. The user can filter the works by camera make and model.
+4. Diplay "Unknown Model" and "Unknown Make" as the model or make for works which are excluded in API.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+​
 
-### `yarn build`
+## Details:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Highlights
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Using [React](https://reactjs.org/) to create reusable components.
+- Responsive UI design, mobile friendly.
+- Spinner solution used when data loading.
+- Alert solution used when improper filtering.
+- Friendly error information will be appearing when there is the error occured.
+- Reset button provided.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Running unit test
 
-### `yarn eject`
+1. run npm start first and keep the program running
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. npm run test to lauch the test
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Using Jest and Enzyme to have unit testing
+   ![Test Image 1](test.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Prerequisites
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Node.js - Download and Install Node.js. You can also follow this gist for a quick and easy way to install Node.js and npm
 
-## Learn More
+2. NPM - Install NPM for all dependencies both in server and client.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Quick Start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Install dependencies :
+npm install
 
-### Code Splitting
+## Running locally
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Run the client :
+npm start
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Run the unit test:
+npm run test
