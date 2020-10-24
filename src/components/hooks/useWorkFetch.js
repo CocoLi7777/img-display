@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 export const useWorksFetch = () => {
@@ -13,11 +13,9 @@ export const useWorksFetch = () => {
       const queryResult = await axios.post(endpoint, {
         query: keywordQuery,
       });
-      //console.log(queryResult.data.data);
-      const result = queryResult.data.data;
 
+      const result = queryResult.data.data;
       setData({ works: result.works });
-      //console.log(data);
     } catch (error) {
       setError(true);
     }

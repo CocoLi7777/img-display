@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useWorksFetch } from './components/hooks/useWorkFetch';
 import { GRAPHQL_API, GET_WORKS_QUERY } from './config';
+import { useWorksFetch } from './components/hooks/useWorkFetch';
 import { Work } from './components/elements/Work';
 import { Grid } from './components/elements/Grid';
 import { ToolBar } from './components/elements/ToolBar';
@@ -10,9 +10,9 @@ import { Spinner } from './components/elements/Spinner';
 import { Alert } from './components/elements/Alert';
 import { Error } from './components/elements/Error';
 import { ResetBtn } from './components/elements/ResetBtn';
+
 const Home = () => {
   const [{ data, loading, error }, fetchWorks] = useWorksFetch();
-
   const [filter, setfilter] = useState([]);
   const [makeFilter, setMakeFilter] = useState([]);
   const [modelFilter, setModelFilter] = useState([]);
@@ -57,7 +57,6 @@ const Home = () => {
   const handleModelFilters = (filters) => {
     let allWorks = [];
 
-    console.log(filter);
     if (filters == 'all' && (makeFilter.length === 0 || isMakeAll === true)) {
       setIsModelAll(true);
       allWorks = [...data.works];
@@ -89,6 +88,10 @@ const Home = () => {
     }
   };
 
+  const handleReset = () => {
+    document.location.reload(true);
+  };
+
   useEffect(() => {
     fetchWorks(GRAPHQL_API, GET_WORKS_QUERY);
   }, []);
@@ -97,18 +100,21 @@ const Home = () => {
 
   return (
     <>
-      <ToolBar>
+      <ToolBar data-test="toolbarComponent">
         <FilterMake
-          handleMakeFilters={(filters) => handleMakeFilters(filters)}
+          data-test="makeFilter"
+          callback={(filters) => handleMakeFilters(filters)}
         />
         <FilterModel
-          handleModelFilters={(filters) => handleModelFilters(filters)}
+          data-test="modelFilter"
+          callback={(filters) => handleModelFilters(filters)}
         />
-        <ResetBtn text="Reset" />
+        <ResetBtn text="Reset" data-test="resetBtn" callback={handleReset} />
       </ToolBar>
       {filter.length === 0 &&
         (modelFilter.length > 0 || makeFilter.length > 0) && <Alert />}
       <Grid
+        data-test="works"
         header={
           modelFilter.length > 0 || makeFilter.length > 0
             ? filter.length +
@@ -120,8 +126,12 @@ const Home = () => {
         {filter.length === 0 &&
         modelFilter.length === 0 &&
         makeFilter.length === 0
-          ? data.works.map((item) => <Work key={item.id} item={item} />)
-          : filter.map((item) => <Work key={item.id} item={item} />)}
+          ? data.works.map((item) => (
+              <Work data-test="work" key={item.id} item={item} />
+            ))
+          : filter.map((item) => (
+              <Work data-test="work" key={item.id} item={item} />
+            ))}
       </Grid>
     </>
   );

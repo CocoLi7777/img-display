@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
+import PropTypes from 'prop-types';
 
 const { Option } = Select;
 
-export const FilterModel = (props) => {
+export const FilterModel = ({ callback }) => {
   function handleChange(value) {
-    props.handleModelFilters(value);
+    callback(value);
   }
 
   return (
@@ -15,6 +16,7 @@ export const FilterModel = (props) => {
         defaultValue="Model"
         style={{ width: 240 }}
         onChange={handleChange}
+        data-test="modelFilter"
       >
         <Option value="all">All Model</Option>
         <Option value="NIKON D80">NIKON D80</Option>
@@ -27,4 +29,8 @@ export const FilterModel = (props) => {
       </Select>
     </div>
   );
+};
+
+FilterModel.propTypes = {
+  callback: PropTypes.func,
 };

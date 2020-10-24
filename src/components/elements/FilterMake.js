@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
+import PropTypes from 'prop-types';
 
 const { Option } = Select;
 
-export const FilterMake = (props) => {
+export const FilterMake = ({ callback }) => {
   function handleChange(value) {
-    props.handleMakeFilters(value);
+    callback(value);
   }
 
   return (
@@ -15,6 +16,7 @@ export const FilterMake = (props) => {
         defaultValue="Make"
         style={{ width: 240 }}
         onChange={handleChange}
+        data-test="makeFilter"
       >
         <Option value="all">All Make</Option>
         <Option value="canon">Canon</Option>
@@ -25,4 +27,8 @@ export const FilterMake = (props) => {
       </Select>
     </div>
   );
+};
+
+FilterMake.propTypes = {
+  callback: PropTypes.func,
 };

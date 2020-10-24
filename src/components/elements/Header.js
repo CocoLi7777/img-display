@@ -3,9 +3,9 @@ import { StyledHeader } from './../styles/StyledHeader';
 import Artist from './../images/artist.svg';
 
 const Header = () => (
-  <StyledHeader>
+  <StyledHeader data-test="headerComponent">
     <div className="header-content">
-      <img src={Artist} alt="artist" />
+      <img src={Artist} alt="artist" data-test="logoImage" />
       &nbsp;&nbsp;Artworks Bay
     </div>
   </StyledHeader>
